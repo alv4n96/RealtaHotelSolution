@@ -15,13 +15,20 @@ namespace HotelConsole.HandleConsole
 
             //GetAllDataHotel(_conn);
             //CreateHotel(_conn);
-            GetDataHotelById(_conn, 2);
+            //GetDataHotelById(_conn, 2);
             //UpdateHotel(_conn);
             //DeleteHotel(_conn,24);
             //GetDataHotelById(_conn, 24);
             //UpdateHotelBySP(_conn);
+            //RunAsync(_conn);
         }
 
+        public static async Task RunAsync(IHotelDbLib _conn)
+        {
+            Hotel s = new Hotel();
+            s.GetDataHotelAsync(_conn);
+            Thread.Sleep(25);
+        }
 
         private static void GetAllDataHotel(IHotelDbLib config)
         {
@@ -73,12 +80,13 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(regionUpdateSpResult);
         }
 
-
         private async Task GetDataHotelAsync(IHotelDbLib config)
         {
-            
+            Console.WriteLine("============ini adalah asynchronous===========");
 
+            var dataHotel = await config.RepositoryManager.Hotel.FindAllHotelAsync();
+            foreach (var item in dataHotel) Console.WriteLine(item);
         }
-       
+
     }
 }
