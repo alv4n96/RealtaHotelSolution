@@ -1,0 +1,12 @@
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\bin\Debug\net6.0\VBHotelDbLib.deps.json
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\bin\Debug\net6.0\VBHotelDbLib.dll
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\bin\Debug\net6.0\VBHotelDbLib.pdb
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.vbproj.AssemblyReference.cache
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.AssemblyInfoInputs.cache
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.AssemblyInfo.vb
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.vbproj.CoreCompileInputs.cache
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.dll
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\refint\VBHotelDbLib.dll
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\VBHotelDbLib.pdb
+D:\C#_PROJECTS\RealtaHotelSolution\VBHotelDbLib\obj\Debug\net6.0\ref\VBHotelDbLib.dll
