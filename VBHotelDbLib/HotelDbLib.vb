@@ -1,9 +1,10 @@
 ﻿Imports VBHotelDbLib.Base
 Imports VBHotelDbLib.Context
+Imports VBHotelDbLib.Model
 
 Namespace HotelVbApi
-    Public Class HotelVbApi
-        Implements IHotelVbApi
+    Public Class HotelDbLib
+        Implements IHotelDbLib
 
         Private ReadOnly _repositoryContext As IRepositoryContext
 
@@ -16,7 +17,7 @@ Namespace HotelVbApi
             End If
         End Sub
 
-        Public ReadOnly Property RepositoryManager As IRepositoryManager Implements IHotelVbApi.RepositoryManager
+        Public ReadOnly Property RepositoryManager As IRepositoryManager Implements IHotelDbLib.RepositoryManager
             Get
                 If _repoManager Is Nothing Then
                     _repoManager = New RepositoryManager(_repositoryContext)
@@ -26,8 +27,9 @@ Namespace HotelVbApi
             End Get
         End Property
 
-        Public Sub SayHello() Implements IHotelVbApi.SayHello
+        Public Sub SayHello() Implements IHotelDbLib.SayHello
             Console.WriteLine("Ini dari methods SayHello()")
         End Sub
+
     End Class
 End Namespace

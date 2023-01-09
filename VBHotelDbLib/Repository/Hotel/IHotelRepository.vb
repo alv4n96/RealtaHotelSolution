@@ -7,11 +7,11 @@ Namespace Repository
 
         Function FindAllHotel() As List(Of Hotel)
 
-        Function CreateHotel(ByVal region As Hotel) As Hotel
+        Function CreateHotel(ByVal hotel As Hotel) As Hotel
 
-        Function UpdateHotelById(id As Integer, value As String, Optional showCommand As Boolean = False) As Boolean
+        Function UpdateHotelById(id As Integer, hotelName As String, hotelDescription As String, hotelRatingStar As Byte, hotelPhonenumber As String, hotelModifiedDate As DateTime, hotelAddrId As Integer, Optional showCommand As Boolean = False) As Boolean
 
-        Function UpdateHotelBySp(id As Integer, value As String, Optional showCommand As Boolean = False) As Boolean
+        Function UpdateHotelBySp(id As Integer, hotelName As String, hotelDescription As String, hotelRatingStar As Byte, hotelPhonenumber As String, hotelModifiedDate As DateTime, hotelAddrId As Integer, Optional showCommand As Boolean = False) As Boolean
 
         Function DeleteHotel(ByVal id As Integer) As Int32
 
