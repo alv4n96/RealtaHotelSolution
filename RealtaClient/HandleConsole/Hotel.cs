@@ -10,19 +10,18 @@ namespace HotelConsole.HandleConsole
 {
     internal class Hotel
     {
-        public static void Run()
+        public static void Run(IHotelDbLib _conn)
         {
-            IHotelDbLib _conn = new HotelDbLib(BuildConfig.Config().GetConnectionString("RealtaHotelDS"));
 
             //GetAllDataHotel(_conn);
             //CreateHotel(_conn);
-            //GetDataHotelById(_conn, 24);
+            GetDataHotelById(_conn, 2);
             //UpdateHotel(_conn);
             //DeleteHotel(_conn,24);
             //GetDataHotelById(_conn, 24);
             //UpdateHotelBySP(_conn);
-            //Task s = GetDataHotelAsync(_conn);
         }
+
 
         private static void GetAllDataHotel(IHotelDbLib config)
         {
@@ -74,14 +73,10 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(regionUpdateSpResult);
         }
 
-        
-        private static async void GetDataHotelAsync(IHotelDbLib config)
-        {
-            //Call function Get Region with async
-            Console.WriteLine("============ini adalah asynchronous===========");
 
-            var test = await config.RepositoryManager.Hotel.FindAllHotelAsync;
-            test.ForEach(x => Console.WriteLine(x));
+        private async Task GetDataHotelAsync(IHotelDbLib config)
+        {
+            
 
         }
        
