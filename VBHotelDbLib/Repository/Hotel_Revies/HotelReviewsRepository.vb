@@ -105,9 +105,11 @@ Namespace Repository
 
             Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString()}
                 Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
+                    Dim createOnChecker = If(String.IsNullOrEmpty(hotelReview.HoreCreatedOn), DBNull.Value, hotelReview.HoreCreatedOn)
+
                     cmd.Parameters.AddWithValue("@horeUserReview", hotelReview.HoreUserReview)
                     cmd.Parameters.AddWithValue("@horeRating", hotelReview.HoreRating)
-                    cmd.Parameters.AddWithValue("@horeCreatedOn", hotelReview.HoreCreatedOn)
+                    cmd.Parameters.AddWithValue("@horeCreatedOn", createOnChecker)
                     cmd.Parameters.AddWithValue("@horeUserId", hotelReview.HoreUserId)
                     cmd.Parameters.AddWithValue("@horeHotelId", hotelReview.HoreHotelId)
 

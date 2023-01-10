@@ -35,10 +35,10 @@ Namespace Repository
 
 
                             resHotel.HotelName = reader.GetString(1)
-                            resHotel.HotelDescription = reader.GetString(2)
-                            resHotel.HotelRatingStar = reader.GetInt16(3)
+                            resHotel.HotelDescription = If(reader.IsDBNull(2), "", reader.GetString(2))
+                            resHotel.HotelRatingStar = If(reader.IsDBNull(3), 0, reader.GetInt16(3))
                             resHotel.HotelPhonenumber = reader.GetString(4)
-                            resHotel.HotelModifiedDate = reader.GetDateTime(5)
+                            resHotel.HotelModifiedDate = If(reader.IsDBNull(5), "01/01/0001 00:00:00", reader.GetDateTime(5))
                             resHotel.HotelAddrId = reader.GetInt32(6)
                         Else
                             resHotel.HotelName = "Data Not Found"
@@ -78,10 +78,10 @@ Namespace Repository
                             listHotel.Add(New Hotel() With {
                                      .HotelId = reader.GetInt32(0),
                                      .HotelName = reader.GetString(1),
-                                     .HotelDescription = reader.GetString(2),
-                                     .HotelRatingStar = reader.GetInt16(3),
+                                     .HotelDescription = If(reader.IsDBNull(2), "", reader.GetString(2)),
+                                     .HotelRatingStar = If(reader.IsDBNull(3), 0, reader.GetInt16(3)),
                                      .HotelPhonenumber = reader.GetString(4),
-                                     .HotelModifiedDate = reader.GetDateTime(5),
+                                     .HotelModifiedDate = If(reader.IsDBNull(5), "01/01/0001 00:00:00", reader.GetDateTime(5)),
                                      .HotelAddrId = reader.GetInt32(6)
                             })
                         End While
@@ -108,11 +108,16 @@ Namespace Repository
 
             Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString()}
                 Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
+                    'CHECKER NULL VALUE
+                    Dim hotelDescriptionChecker = If(String.IsNullOrEmpty(hotel.HotelDescription), DBNull.Value, hotel.HotelDescription)
+                    Dim ratingStarCheker = If(hotel.HotelRatingStar = 0, DBNull.Value, hotel.HotelRatingStar)
+                    Dim hotelModifiedDateChecker = If(String.IsNullOrEmpty(hotel.HotelModifiedDate), DBNull.Value, hotel.HotelModifiedDate)
+
                     cmd.Parameters.AddWithValue("@hotelName", hotel.HotelName)
-                    cmd.Parameters.AddWithValue("@hotelDescription", hotel.HotelDescription)
-                    cmd.Parameters.AddWithValue("@hotelRatingStar", hotel.HotelRatingStar)
+                    cmd.Parameters.AddWithValue("@hotelDescription", hotelDescriptionChecker)
+                    cmd.Parameters.AddWithValue("@hotelRatingStar", ratingStarCheker)
                     cmd.Parameters.AddWithValue("@hotelPhonenumber", hotel.HotelPhonenumber)
-                    cmd.Parameters.AddWithValue("@hotelModifiedDate", hotel.HotelModifiedDate)
+                    cmd.Parameters.AddWithValue("@hotelModifiedDate", hotelModifiedDateChecker)
                     cmd.Parameters.AddWithValue("@hotelAddrId", hotel.HotelAddrId)
 
                     Try

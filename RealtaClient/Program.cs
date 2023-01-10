@@ -16,7 +16,7 @@ namespace HotelConsole // Note: actual namespace depends on the project name.
             Hotel.Run(config);
 
             /* -- Hotel Reviews -- */
-            HotelReviews.Run(config);
+            //HotelReviews.Run(config);
 
 
         }

@@ -13,7 +13,7 @@ namespace HotelConsole.HandleConsole
         public static void Run(IHotelDbLib _conn)
         {
 
-            //GetAllDataHotel(_conn);
+            GetAllDataHotel(_conn);
             //CreateHotel(_conn);
             //GetDataHotelById(_conn, 2);
             //UpdateHotel(_conn);
