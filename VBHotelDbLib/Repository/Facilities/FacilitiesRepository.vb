@@ -180,19 +180,218 @@ Namespace Repository
         End Function
 
         Public Function UpdateFacilitiesById(id As Integer, faciName As String, faciDescription As String, faciMaxNumber As Integer, faciMeasureUnit As String, faciRoomNumber As String, faciStartdate As Date, faciEndate As Date, faciLowPrice As Double, faciHighPrice As Double, faciRatePrice As Double, faciDiscount As Single, faciTaxRate As Single, faciModifiedDate As Date, faciCagroId As Integer, faciHotelId As Integer, Optional showCommand As Boolean = False) As Boolean Implements IFacilitiesRepository.UpdateFacilitiesById
-            Throw New NotImplementedException()
+
+            Dim sql As String = $"UPDATE Hotel.Facilities
+                                  SET	
+	                                faci_name = @faciName,
+	                                faci_description = @faciDescription,
+	                                faci_max_number = @faciMaxNumber,
+	                                faci_measure_unit = @faciMeasureUnit,
+	                                faci_room_number = @faciRoomNumber,
+	                                faci_startdate = @faciStartdate,
+	                                faci_endate = @faciEndate,
+	                                faci_low_price = @faciLowPrice,
+	                                faci_high_price = @faciHighPrice,
+	                                faci_rate_price = @faciRatePrice,
+	                                faci_discount = @faciDiscount,
+	                                faci_tax_rate = @faciTaxRate,
+	                                faci_modified_date = @faciModifiedDate,
+	                                faci_cagro_id = @faciCagroId,
+	                                faci_hotel_id = @faciHotelId
+                                 WHERE faci_id = @id;"
+
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.Parameters.AddWithValue("@faciName", faciName)
+                    If String.IsNullOrEmpty(faciDescription) Then
+                        cmd.Parameters.AddWithValue("@faciDescription", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciDescription", faciDescription)
+                    End If
+                    If faciMaxNumber = 0 Then
+                        cmd.Parameters.AddWithValue("@faciMaxNumber", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciMaxNumber", faciMaxNumber)
+                    End If
+                    If String.IsNullOrEmpty(faciMeasureUnit) Then
+                        cmd.Parameters.AddWithValue("@faciMeasureUnit", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciMeasureUnit", faciMeasureUnit)
+                    End If
+                    cmd.Parameters.AddWithValue("@faciRoomNumber", faciRoomNumber)
+                    cmd.Parameters.AddWithValue("@faciStartdate", faciStartdate)
+                    cmd.Parameters.AddWithValue("@faciEndate", faciEndate)
+                    cmd.Parameters.AddWithValue("@faciLowPrice", faciLowPrice)
+                    cmd.Parameters.AddWithValue("@faciHighPrice", faciHighPrice)
+                    cmd.Parameters.AddWithValue("@faciRatePrice", faciRatePrice)
+                    If faciDiscount = 0 Then
+                        cmd.Parameters.AddWithValue("@faciDiscount", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciDiscount", faciDiscount)
+                    End If
+                    If faciTaxRate = 0 Then
+                        cmd.Parameters.AddWithValue("@faciTaxRate", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciTaxRate", faciTaxRate)
+                    End If
+                    If String.IsNullOrEmpty(faciModifiedDate) Then
+                        cmd.Parameters.AddWithValue("@faciModifiedDate", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciModifiedDate", faciModifiedDate)
+                    End If
+                    cmd.Parameters.AddWithValue("@faciCagroId", faciCagroId)
+                    cmd.Parameters.AddWithValue("@faciHotelId", faciHotelId)
+
+                    Try
+                        cnn.Open()
+
+                        cmd.ExecuteNonQuery()
+
+                        cnn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+
+                    If showCommand Then
+                        Console.WriteLine(cmd.CommandText)
+                    End If
+                End Using
+            End Using
+
+            Return True
         End Function
 
         Public Function UpdateFacilitiesBySp(id As Integer, faciName As String, faciDescription As String, faciMaxNumber As Integer, faciMeasureUnit As String, faciRoomNumber As String, faciStartdate As Date, faciEndate As Date, faciLowPrice As Double, faciHighPrice As Double, faciRatePrice As Double, faciDiscount As Single, faciTaxRate As Single, faciModifiedDate As Date, faciCagroId As Integer, faciHotelId As Integer, Optional showCommand As Boolean = False) As Boolean Implements IFacilitiesRepository.UpdateFacilitiesBySp
-            Throw New NotImplementedException()
+            Dim sql As String = "sp_update_facilities"
+
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql, .CommandType = Data.CommandType.StoredProcedure}
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.Parameters.AddWithValue("@faciName", faciName)
+                    If String.IsNullOrEmpty(faciDescription) Then
+                        cmd.Parameters.AddWithValue("@faciDescription", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciDescription", faciDescription)
+                    End If
+                    If faciMaxNumber = 0 Then
+                        cmd.Parameters.AddWithValue("@faciMaxNumber", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciMaxNumber", faciMaxNumber)
+                    End If
+                    If String.IsNullOrEmpty(faciMeasureUnit) Then
+                        cmd.Parameters.AddWithValue("@faciMeasureUnit", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciMeasureUnit", faciMeasureUnit)
+                    End If
+                    cmd.Parameters.AddWithValue("@faciRoomNumber", faciRoomNumber)
+                    cmd.Parameters.AddWithValue("@faciStartdate", faciStartdate)
+                    cmd.Parameters.AddWithValue("@faciEndate", faciEndate)
+                    cmd.Parameters.AddWithValue("@faciLowPrice", faciLowPrice)
+                    cmd.Parameters.AddWithValue("@faciHighPrice", faciHighPrice)
+                    cmd.Parameters.AddWithValue("@faciRatePrice", faciRatePrice)
+                    If faciDiscount = 0 Then
+                        cmd.Parameters.AddWithValue("@faciDiscount", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciDiscount", faciDiscount)
+                    End If
+                    If faciTaxRate = 0 Then
+                        cmd.Parameters.AddWithValue("@faciTaxRate", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciTaxRate", faciTaxRate)
+                    End If
+                    If String.IsNullOrEmpty(faciModifiedDate) Then
+                        cmd.Parameters.AddWithValue("@faciModifiedDate", DBNull.Value)
+                    Else
+                        cmd.Parameters.AddWithValue("@faciModifiedDate", faciModifiedDate)
+                    End If
+                    cmd.Parameters.AddWithValue("@faciCagroId", faciCagroId)
+                    cmd.Parameters.AddWithValue("@faciHotelId", faciHotelId)
+
+                    Try
+                        cnn.Open()
+
+                        cmd.ExecuteNonQuery()
+
+                        cnn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+
+                    If showCommand Then
+                        Console.WriteLine(cmd.CommandText)
+                    End If
+                End Using
+            End Using
+
+            Return True
         End Function
 
         Public Function DeleteFacilities(id As Integer) As Integer Implements IFacilitiesRepository.DeleteFacilities
-            Throw New NotImplementedException()
+            Dim rowEffect As Int16 = 0
+
+            Dim sql As String = "DELETE FROM Hotel.Facilities " &
+                                "WHERE faci_id = @faciId;"
+
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
+                    cmd.Parameters.AddWithValue("@faciId", id)
+
+                    Try
+                        cnn.Open()
+
+                        rowEffect = cmd.ExecuteNonQuery()
+
+                        cnn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                End Using
+            End Using
+            Return rowEffect
         End Function
 
-        Public Function FindAllFacilitiesAsync() As Task(Of List(Of Facilities)) Implements IFacilitiesRepository.FindAllFacilitiesAsync
-            Throw New NotImplementedException()
+        Public Async Function FindAllFacilitiesAsync() As Task(Of List(Of Facilities)) Implements IFacilitiesRepository.FindAllFacilitiesAsync
+            Dim resFacilities = New List(Of Facilities)
+
+            Dim sql = "SELECT * FROM Hotel.Facilities;"
+
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
+                    Try
+                        cnn.Open()
+                        Dim reader = Await cmd.ExecuteReaderAsync()
+
+                        While reader.Read()
+                            resFacilities.Add(New Facilities With {
+                                .FaciId = reader.GetInt32(0),
+                                .FaciName = reader.GetString(1),
+                                .FaciDescription = If(reader.IsDBNull(2), "", reader.GetString(2)),
+                                .FaciMaxNumber = If(reader.IsDBNull(3), 0, reader.GetInt32(3)),
+                                .FaciMeasureUnit = If(reader.IsDBNull(4), "", reader.GetString(4)),
+                                .FaciRoomNumber = reader.GetString(5),
+                                .FaciStartdate = reader.GetDateTime(6),
+                                .FaciEndate = reader.GetDateTime(7),
+                                .FaciLowPrice = reader.GetDecimal(8),
+                                .FaciHighPrice = reader.GetDecimal(9),
+                                .FaciRatePrice = reader.GetDecimal(10),
+                                .FaciDiscount = If(reader.IsDBNull(11), 0, reader.GetDecimal(11)),
+                                .FaciTaxRate = If(reader.IsDBNull(12), 0, reader.GetDecimal(12)),
+                                .FaciModifiedDate = If(reader.IsDBNull(13), "01/01/0001 00:00:00", reader.GetDateTime(13)),
+                                .FaciCagroId = reader.GetInt32(14),
+                                .FaciHotelId = reader.GetInt32(15)
+                              })
+                        End While
+
+                        reader.Close()
+                        cnn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                End Using
+            End Using
+
+            Return resFacilities
         End Function
     End Class
 End Namespace

@@ -12,12 +12,12 @@ namespace HotelConsole.HandleConsole
         public static void Run(IHotelDbLib config)
         {
 
-            GetAllDataHoRe(config);
-            //GetDataHoReById(config, 6);
+            //GetAllDataHoRe(config);
+            //GetDataHoReById(config, 5);
             //CreateHoRe(config);
             //UpdateHoRe(config);
             //UpdateHoReBySP(config);
-            //DeleteHoRe(config, 6);
+            //DeleteHoRe(config, 5);
             //GetDataHoReById(config, 6);
             //RunAsync(config);
         }
@@ -77,7 +77,7 @@ namespace HotelConsole.HandleConsole
         {
             var rowDelete = config.RepositoryManager.HotelReviews.DeleteHotelReviews(id);
             Console.WriteLine($"Delete Hotel Reviews row : {rowDelete}");
-            //GetDataHotelById(config, id);
+            GetDataHoReById(config, id);
         }
 
         private async Task GetDataHoReAsync(IHotelDbLib config)

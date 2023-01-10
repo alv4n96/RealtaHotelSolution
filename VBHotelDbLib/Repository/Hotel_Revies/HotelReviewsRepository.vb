@@ -176,7 +176,6 @@ Namespace Repository
         End Function
 
         Public Function UpdateHotelReviewsBySp(id As Integer, userReview As String, rating As Short, userId As Integer, hotelId As Integer, createdOn As Date, Optional showCommand As Boolean = False) As Boolean Implements IHotelReviewsRepository.UpdateHotelReviewsBySp
-
             Dim sql As String = "sp_update_hotel_reviews"
 
 
@@ -199,6 +198,7 @@ Namespace Repository
                     'showCommand
                     If showCommand Then
                         Console.WriteLine(cmd.CommandText)
+
                     End If
 
                     Try
@@ -219,12 +219,12 @@ Namespace Repository
             Dim rowEffect As Int32 = 0
 
             'declare statement
-            Dim sql As String = "DELETE FROM Hotel.Hotel_Reviews
-            WHERE hore_id = 6;"
+            Dim sql As String = "DELETE FROM Hotel.Hotel_Reviews " &
+                                "WHERE hore_id = @hotelReviewId;"
 
             Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
                 Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
-                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.Parameters.AddWithValue("@hotelReviewId", id)
 
                     Try
                         cnn.Open()

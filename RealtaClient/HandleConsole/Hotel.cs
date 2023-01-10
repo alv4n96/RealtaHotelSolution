@@ -13,12 +13,11 @@ namespace HotelConsole.HandleConsole
         public static void Run(IHotelDbLib _conn)
         {
 
-            GetAllDataHotel(_conn);
+            //GetAllDataHotel(_conn);
             //CreateHotel(_conn);
-            //GetDataHotelById(_conn, 2);
+            GetDataHotelById(_conn, 11);
             //UpdateHotel(_conn);
-            //DeleteHotel(_conn,24);
-            //GetDataHotelById(_conn, 24);
+            DeleteHotel(_conn, 11);
             //UpdateHotelBySP(_conn);
             //RunAsync(_conn);
         }

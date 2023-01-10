@@ -224,7 +224,7 @@ Namespace Repository
 
             'declare statement
             Dim sql As String = "DELETE FROM Hotel.Hotels " &
-                                      "WHERE hotel_id = @hotelId"
+                                "WHERE hotel_id = @hotelId"
 
             Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
                 Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}

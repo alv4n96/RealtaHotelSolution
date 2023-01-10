@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using VBHotelDbLib.HotelVbApi;
@@ -15,22 +16,17 @@ namespace HotelConsole.HandleConsole
             //GetAllDataFaci(config);
             //GetDataFaciById(config, 27);
             //CreateFaci(config);
-
-
-            //UpdateHoRe(config);
-            //UpdateHoReBySP(config);
-            //DeleteHoRe(config, 6);
-            //GetDataFaciById(config, 6);
+            //UpdateFaci(config);
+            //UpdateFaciBySP(config);
+            //DeleteFaci(config, 28);
             //RunAsync(config);
         }
 
         private static async Task RunAsync(IHotelDbLib _conn)
         {
-            /*
-            HotelReviews s = new HotelReviews();
-            s.GetDataHoReAsync(_conn);
-            Thread.Sleep(25);
-            */
+            Facilities s = new Facilities();
+            s.GetDataFaciAsync(_conn);
+            Thread.Sleep(50);
         }
 
         private static void GetAllDataFaci(IHotelDbLib config)
@@ -70,36 +66,70 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine($"New Hotel Review Created : {newFacilities}");
         }
 
-        private static void UpdateHoRe(IHotelDbLib config)
+        private static void UpdateFaci(IHotelDbLib config)
         {
-            DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);
-            var updateHotelReview = config.RepositoryManager.HotelReviews.UpdateHotelReviewsById(6, "Limboto 20 Updated!", 4, 1, 2, dateUpdate);
-            var hotelReviewUpdateResult = config.RepositoryManager.HotelReviews.FindHotelReviewsById(6);
-            Console.WriteLine(hotelReviewUpdateResult);
+            //Data Update!
+            var id = 27;
+            var faciName = "Test New Facilities";
+            var faciDescription = "Updated FacilitiesName";
+            var faciMaxNumber = 0;
+            //var faciMeasureUnit = null;
+            var faciRoomNumber = "TEST04";
+            var faciStartdate = new DateTime(2023, 1, 1, 6, 51, 39);
+            var faciEndate = new DateTime(2024, 1, 1, 6, 51, 39);
+            var faciLowPrice = 200000;
+            var faciHighPrice = 250000;
+            var faciRatePrice = 230000;
+            var faciDiscount = 25000;
+            var faciTaxRate = 10000;
+            var faciModifiedDate = new DateTime(2023,1,11,00,26,16);
+            var faciCagroId =1;
+            var faciHotelId =4;
+
+            var updateFacilities = config.RepositoryManager.Facilities.UpdateFacilitiesById(id, faciName, faciDescription, faciMaxNumber, null, faciRoomNumber, faciStartdate, faciEndate, faciLowPrice, faciHighPrice, faciRatePrice, faciDiscount, faciTaxRate, faciModifiedDate, faciCagroId, faciHotelId);
+            var facilitiesResult = config.RepositoryManager.Facilities.FindFacilitiesById(id);
+            Console.WriteLine(facilitiesResult);
         }
 
-        private static void UpdateHoReBySP(IHotelDbLib config)
+        private static void UpdateFaciBySP(IHotelDbLib config)
         {
-            DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);
-            //Call UpdateHotelReviews with SQL - STORE PROCEDURE
-            var updateHotelReview = config.RepositoryManager.HotelReviews.UpdateHotelReviewsById(6, "Limboto Updated by SP!", 4, 1, 2, dateUpdate);
-            var hotelReviewUpdateSpResult = config.RepositoryManager.HotelReviews.FindHotelReviewsById(6);
-            Console.WriteLine(hotelReviewUpdateSpResult);
+            //Data Update!
+            var id = 27;
+            var faciName = "Test New Facilities";
+            var faciDescription = "Updated FacilitiesName BySP";
+            var faciMaxNumber = 0;
+            var faciMeasureUnit = "people";
+            var faciRoomNumber = "TEST04";
+            var faciStartdate = new DateTime(2023, 1, 1, 6, 51, 39);
+            var faciEndate = new DateTime(2024, 1, 1, 6, 51, 39);
+            var faciLowPrice = 200000;
+            var faciHighPrice = 250000;
+            var faciRatePrice = 230000;
+            var faciDiscount = 25000;
+            var faciTaxRate = 10000;
+            var faciModifiedDate = new DateTime(2023, 1, 11, 00, 26, 16);
+            var faciCagroId = 1;
+            var faciHotelId = 4;
+
+            var updateFacilitiesBySp = config.RepositoryManager.Facilities.UpdateFacilitiesBySp(id, faciName, faciDescription, faciMaxNumber, faciMeasureUnit, faciRoomNumber, faciStartdate, faciEndate, faciLowPrice, faciHighPrice, faciRatePrice, faciDiscount, faciTaxRate, faciModifiedDate, faciCagroId, faciHotelId);
+            var facilitiesResult = config.RepositoryManager.Facilities.FindFacilitiesById(id);
+            Console.WriteLine(facilitiesResult);
         }
 
-        private static void DeleteHoRe(IHotelDbLib config, int id)
+        private static void DeleteFaci(IHotelDbLib config, int id)
         {
-            var rowDelete = config.RepositoryManager.HotelReviews.DeleteHotelReviews(id);
-            Console.WriteLine($"Delete Hotel Reviews row : {rowDelete}");
-            //GetDataHotelById(config, id);
+            var rowDelete = config.RepositoryManager.Facilities.DeleteFacilities(id);
+            Console.WriteLine($"Delete Facilities Reviews row : {rowDelete}" +
+                              $"");
+            GetDataFaciById(config, id);
         }
 
-        private async Task GetDataHoReAsync(IHotelDbLib config)
+        private async Task GetDataFaciAsync(IHotelDbLib config)
         {
             Console.WriteLine("============ini adalah asynchronous===========");
 
-            var dataHotel = await config.RepositoryManager.HotelReviews.FindAllHotelReviewsAsync();
-            foreach (var item in dataHotel) Console.WriteLine(item);
+            var dataFacilities = await config.RepositoryManager.Facilities.FindAllFacilitiesAsync();
+            foreach (var item in dataFacilities) Console.WriteLine(item);
         }
     }
 }
