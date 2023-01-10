@@ -8,6 +8,9 @@
         Private _horeUserId As Integer
         Private _horeHotelId As Integer
 
+        Public Sub New()
+        End Sub
+
         Public Sub New(horeId As Integer, horeUserReview As String, horeRating As Short, horeCreatedOn As Date, horeUserId As Integer, horeHotelId As Integer)
             Me.HoreId = horeId
             Me.HoreUserReview = horeUserReview
@@ -72,10 +75,10 @@
         End Property
 
         Public Overrides Function ToString() As String
-            Return $" === Data Review ===
-Review : 
-{HoreUserReview}
-Review Id : {HoreId} | Rating : {HoreRating} | UserId : {HoreUserId} | HotelId : {HoreHotelId} | Date : {HoreCreatedOn}"
+            Return $" 
+=== {vbTab} {vbTab} Data Review : {HoreId} {vbTab} {vbTab} ===
+'{HoreUserReview}' 
+Rating : {HoreRating} | UserId : {HoreUserId} | HotelId : {HoreHotelId} | Date : {HoreCreatedOn}"
         End Function
     End Class
 End Namespace

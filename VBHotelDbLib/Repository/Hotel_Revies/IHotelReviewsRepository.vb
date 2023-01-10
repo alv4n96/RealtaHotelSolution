@@ -6,7 +6,7 @@ Namespace Repository
 
         Function FindHotelReviewsById(ByVal id As Int32) As HotelReviews
 
-        Function CreateHotelReviews(ByVal hotel As HotelReviews) As HotelReviews
+        Function CreateHotelReviews(ByVal hotelReview As HotelReviews) As HotelReviews
 
         Function UpdateHotelReviewsById(id As Integer, userReview As String, rating As Int16, userId As Int32, hotelId As Int32, createdOn As DateTime, Optional showCommand As Boolean = False) As Boolean
 

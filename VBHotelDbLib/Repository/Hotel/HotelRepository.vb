@@ -74,7 +74,6 @@ Namespace Repository
                         cnn.Open()
 
                         Dim reader = cmd.ExecuteReader()
-
                         While reader.Read()
                             listHotel.Add(New Hotel() With {
                                      .HotelId = reader.GetInt32(0),
@@ -133,10 +132,8 @@ Namespace Repository
         End Function
 
         Public Function UpdateHotelById(id As Integer, hotelName As String, hotelDescription As String, hotelRatingStar As Byte, hotelPhonenumber As String, hotelModifiedDate As Date, hotelAddrId As Integer, Optional showCommand As Boolean = False) As Boolean Implements IHotelRepository.UpdateHotelById
-            Dim updateHotel As New Hotel()
-
             'declare statement
-            Dim statement As String = "UPDATE Hotel.Hotels " &
+            Dim sql As String = "UPDATE Hotel.Hotels " &
                                       "SET " &
                                       "hotel_name = @hotelName, " &
                                       "hotel_description = @hotelDescription, " &
@@ -146,8 +143,8 @@ Namespace Repository
                                       "hotel_addr_id = @hotelAddrId " &
                                       "WHERE hotel_id = @hotelId;"
 
-            Using conn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
-                Using cmd As New SqlCommand With {.Connection = conn, .CommandText = statement}
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
                     cmd.Parameters.AddWithValue("@hotelId", id)
                     cmd.Parameters.AddWithValue("@hotelName", hotelName)
                     cmd.Parameters.AddWithValue("@hotelDescription", hotelDescription)
@@ -162,10 +159,10 @@ Namespace Repository
                     End If
 
                     Try
-                        conn.Open()
+                        cnn.Open()
                         cmd.ExecuteNonQuery()
 
-                        conn.Close()
+                        cnn.Close()
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try
@@ -179,15 +176,15 @@ Namespace Repository
 
         Public Function UpdateHotelBySp(id As Integer, hotelName As String, hotelDescription As String, hotelRatingStar As Byte, hotelPhonenumber As String, hotelModifiedDate As Date, hotelAddrId As Integer, Optional showCommand As Boolean = False) As Boolean Implements IHotelRepository.UpdateHotelBySp
 
-            Dim statement As String = "sp_update_hotel"
+            Dim sql As String = "sp_update_hotel"
 
 
-            Using conn As New SqlConnection With {
+            Using cnn As New SqlConnection With {
                 .ConnectionString = _context.GetConnectionString
             }
                 Using cmd As New SqlCommand With {
-                    .Connection = conn,
-                    .CommandText = statement,
+                    .Connection = cnn,
+                    .CommandText = sql,
                     .CommandType = Data.CommandType.StoredProcedure
                 }
                     cmd.Parameters.AddWithValue("@hotelId", id)
@@ -204,10 +201,10 @@ Namespace Repository
                     End If
 
                     Try
-                        conn.Open()
+                        cnn.Open()
                         cmd.ExecuteNonQuery()
 
-                        conn.Close()
+                        cnn.Close()
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try
@@ -221,18 +218,18 @@ Namespace Repository
             Dim rowEffect As Int32 = 0
 
             'declare statement
-            Dim statement As String = "DELETE FROM Hotel.Hotels " &
+            Dim sql As String = "DELETE FROM Hotel.Hotels " &
                                       "WHERE hotel_id = @hotelId"
 
-            Using conn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
-                Using cmd As New SqlCommand With {.Connection = conn, .CommandText = statement}
+            Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = cnn, .CommandText = sql}
                     cmd.Parameters.AddWithValue("@hotelId", id)
 
                     Try
-                        conn.Open()
+                        cnn.Open()
                         rowEffect = cmd.ExecuteNonQuery()
 
-                        conn.Close()
+                        cnn.Close()
                     Catch ex As Exception
                         Console.WriteLine(ex.Message)
                     End Try

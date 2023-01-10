@@ -23,7 +23,7 @@ namespace HotelConsole.HandleConsole
             //RunAsync(_conn);
         }
 
-        public static async Task RunAsync(IHotelDbLib _conn)
+        private static async Task RunAsync(IHotelDbLib _conn)
         {
             Hotel s = new Hotel();
             s.GetDataHotelAsync(_conn);
@@ -38,8 +38,8 @@ namespace HotelConsole.HandleConsole
 
         private static void GetDataHotelById(IHotelDbLib config, int id)
         {
-            var regionById = config.RepositoryManager.Hotel.FindHotelById(id);
-            Console.WriteLine($"Data Found : {regionById}");
+            var hotelById = config.RepositoryManager.Hotel.FindHotelById(id);
+            Console.WriteLine($"Data Found : {hotelById}");
 
         }
 
@@ -60,7 +60,7 @@ namespace HotelConsole.HandleConsole
 
         private static void UpdateHotel(IHotelDbLib config)
         {
-            var updateRegion = config.RepositoryManager.Hotel.UpdateHotelById(24, "Hotel Limboto 22", "Hotel Good",4, "+62 823 4545 2222",DateTime.Now, 3);
+            var updateHotel = config.RepositoryManager.Hotel.UpdateHotelById(24, "Hotel Limboto 22", "Hotel Good",4, "+62 823 4545 2222",DateTime.Now, 3);
             var hotelUpdateResult = config.RepositoryManager.Hotel.FindHotelById(24);
             Console.WriteLine(hotelUpdateResult);
         }
@@ -68,16 +68,16 @@ namespace HotelConsole.HandleConsole
         private static void DeleteHotel(IHotelDbLib config, int id)
         {
             var rowDelete = config.RepositoryManager.Hotel.DeleteHotel(id);
-            Console.WriteLine($"Delete region row : {rowDelete}");
+            Console.WriteLine($"Delete Hotel row : {rowDelete}");
             GetDataHotelById(config, id);
         }
 
         private static void UpdateHotelBySP(IHotelDbLib config)
         {
-            //Call UpdateRegion with SQL - STORE PROCEDURE
-            var updateRegion = config.RepositoryManager.Hotel.UpdateHotelById(25, "Hotel Limboto 22", "Hotel Cihuy Bos", 4, "+62 823 4545 2222", DateTime.Now, 3);
-            var regionUpdateSpResult = config.RepositoryManager.Hotel.FindHotelById(25);
-            Console.WriteLine(regionUpdateSpResult);
+            //Call UpdateHotel with SQL - STORE PROCEDURE
+            var updateHotel = config.RepositoryManager.Hotel.UpdateHotelById(25, "Hotel Limboto 22", "Hotel Cihuy Bos", 4, "+62 823 4545 2222", DateTime.Now, 3);
+            var hotelUpdateSpResult = config.RepositoryManager.Hotel.FindHotelById(25);
+            Console.WriteLine(hotelUpdateSpResult);
         }
 
         private async Task GetDataHotelAsync(IHotelDbLib config)
