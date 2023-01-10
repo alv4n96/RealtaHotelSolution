@@ -7,55 +7,69 @@ using VBHotelDbLib.HotelVbApi;
 
 namespace HotelConsole.HandleConsole
 {
-    internal class HotelReviews
+    internal class Facilities
     {
         public static void Run(IHotelDbLib config)
         {
 
-            GetAllDataHoRe(config);
-            //GetDataHoReById(config, 6);
-            //CreateHoRe(config);
+            //GetAllDataFaci(config);
+            //GetDataFaciById(config, 27);
+            //CreateFaci(config);
+
+
             //UpdateHoRe(config);
             //UpdateHoReBySP(config);
             //DeleteHoRe(config, 6);
-            //GetDataHoReById(config, 6);
+            //GetDataFaciById(config, 6);
             //RunAsync(config);
         }
 
         private static async Task RunAsync(IHotelDbLib _conn)
         {
+            /*
             HotelReviews s = new HotelReviews();
             s.GetDataHoReAsync(_conn);
             Thread.Sleep(25);
+            */
         }
 
-        private static void GetAllDataHoRe(IHotelDbLib config)
+        private static void GetAllDataFaci(IHotelDbLib config)
         {
-            var getDataHoreReviews = config.RepositoryManager.HotelReviews.FindAllHotelReviews();
-            foreach (var item in getDataHoreReviews) Console.WriteLine(item);
+            var getAllDataFaci = config.RepositoryManager.Facilities.FindAllFacilities();
+            foreach (var x in getAllDataFaci) Console.WriteLine(x);
         }
 
-        private static void GetDataHoReById(IHotelDbLib config, int id)
+        private static void GetDataFaciById(IHotelDbLib config, int id)
         {
-            var hoReById = config.RepositoryManager.HotelReviews.FindHotelReviewsById(id);
+            var facilitiesById = config.RepositoryManager.Facilities.FindFacilitiesById(id);
             Console.WriteLine($"RESULT : " +
-                              $"{hoReById}");
+                              $"{facilitiesById}");
         }
 
-        private static void CreateHoRe(IHotelDbLib config)
+        private static void CreateFaci(IHotelDbLib config)
         {
-            var newHotelReview = config.RepositoryManager.HotelReviews.CreateHotelReviews(new VBHotelDbLib.Model.HotelReviews
+            var newFacilities = config.RepositoryManager.Facilities.CreateFacilities(new VBHotelDbLib.Model.Facilities
             {
-                HoreUserReview = "Limboto 20 kembali lagi nih bos",
-                HoreRating = 4,
-                HoreCreatedOn = DateTime.Now,
-                HoreUserId = 1,
-                HoreHotelId = 2
+                FaciName = "Test New Facilities",
+                FaciDescription = null,
+                FaciMaxNumber = 0,
+                FaciMeasureUnit = null,
+                FaciRoomNumber = "TEST04",
+                FaciStartdate = new DateTime(2023, 1, 1, 6, 51, 39),
+                FaciEndate = new DateTime(2024, 1, 1, 6, 51, 39),
+                FaciLowPrice = 200000,
+                FaciHighPrice = 250000,
+                FaciRatePrice = 230000,
+                FaciDiscount = 25000,
+                FaciTaxRate = 10000,
+                FaciModifiedDate = DateTime.Now,
+                FaciCagroId = 1,
+                FaciHotelId = 4
             });
 
-            Console.WriteLine($"New Hotel Review Created : {newHotelReview}");
+            Console.WriteLine($"New Hotel Review Created : {newFacilities}");
         }
-        
+
         private static void UpdateHoRe(IHotelDbLib config)
         {
             DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);
@@ -63,7 +77,7 @@ namespace HotelConsole.HandleConsole
             var hotelReviewUpdateResult = config.RepositoryManager.HotelReviews.FindHotelReviewsById(6);
             Console.WriteLine(hotelReviewUpdateResult);
         }
-        
+
         private static void UpdateHoReBySP(IHotelDbLib config)
         {
             DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);

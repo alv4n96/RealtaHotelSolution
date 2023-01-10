@@ -4,7 +4,7 @@
         Private _horeId As Integer
         Private _horeUserReview As String
         Private _horeRating As Int16
-        Private _horeCreatedOn As DateTime
+        Private _horeCreatedOn? As DateTime
         Private _horeUserId As Integer
         Private _horeHotelId As Integer
 

@@ -13,10 +13,13 @@ namespace HotelConsole // Note: actual namespace depends on the project name.
             IHotelDbLib config = new HotelDbLib(BuildConfig.Config().GetConnectionString("RealtaHotelDS"));
 
             /* -- Hotel -- */
-            Hotel.Run(config);
+            //Hotel.Run(config);
 
             /* -- Hotel Reviews -- */
             //HotelReviews.Run(config);
+
+            /* -- Facilities -- */
+            Facilities.Run(config);
 
 
         }

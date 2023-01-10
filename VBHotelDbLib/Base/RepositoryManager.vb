@@ -9,6 +9,7 @@ Namespace Base
 
         Private _hotelRepository As IHotelRepository
         Private _hotelReviewsRepository As IHotelReviewsRepository
+        Private _facilitiesRepository As IFacilitiesRepository
 
         Public Sub New(repositoryContext As IRepositoryContext)
             _repositoryContext = repositoryContext
@@ -31,6 +32,16 @@ Namespace Base
                     _hotelReviewsRepository = New HotelReviewsRepository(_repositoryContext)
                 End If
                 Return _hotelReviewsRepository
+            End Get
+        End Property
+
+        Public ReadOnly Property Facilities As IFacilitiesRepository Implements IRepositoryManager.Facilities
+            Get
+                'Up IFacilities & Implementation
+                If _facilitiesRepository Is Nothing Then
+                    _facilitiesRepository = New FacilitiesRepository(_repositoryContext)
+                End If
+                Return _facilitiesRepository
             End Get
         End Property
     End Class

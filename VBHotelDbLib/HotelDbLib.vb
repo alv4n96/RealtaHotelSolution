@@ -1,6 +1,5 @@
 ﻿Imports VBHotelDbLib.Base
 Imports VBHotelDbLib.Context
-Imports VBHotelDbLib.Model
 
 Namespace HotelVbApi
     Public Class HotelDbLib
