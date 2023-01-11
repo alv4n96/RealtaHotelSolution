@@ -8,9 +8,9 @@ Namespace Repository
 
         Function CreateFacilityPhotos(ByVal facilityPhotos As FacilityPhotos) As FacilityPhotos
 
-        Function UpdateFacilityPhotosById(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Byte, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer, Optional showCommand As Boolean = False) As Boolean
+        Function UpdateFacilityPhotosById(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Boolean, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer, Optional showCommand As Boolean = False) As Boolean
 
-        Function UpdateFacilityPhotosBySp(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Byte, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer, Optional showCommand As Boolean = False) As Boolean
+        Function UpdateFacilityPhotosBySp(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Boolean, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer, Optional showCommand As Boolean = False) As Boolean
 
         Function DeleteFacilityPhotos(ByVal id As Integer) As Int32
 

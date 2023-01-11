@@ -22,7 +22,9 @@ namespace HotelConsole // Note: actual namespace depends on the project name.
             //Facilities.Run(config);
 
             /* -- Facility Photos -- */
-            Console.WriteLine(config.RepositoryManager.FacilityPhotos.DeleteFacilityPhotos(23)); 
+            //FacilityPhotos.Run(config);
+
+
         }
     }
 }

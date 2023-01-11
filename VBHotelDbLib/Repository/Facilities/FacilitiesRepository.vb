@@ -136,7 +136,7 @@ Namespace Repository
                                 "(@faciName, @faciDescription, @faciMaxNumber, @faciMeasureUnit, " &
                                 "@faciRoomNumber, @faciStartdate, @faciEndate, " &
                                 "@faciLowPrice, @faciHighPrice, @faciRatePrice, " &
-                                "@faciDiscount, @faciTaxRate, @faciModifiedDate, @faciCagroId, @faciHotelId)" &
+                                "@faciDiscount, @faciTaxRate, @faciModifiedDate, @faciCagroId, @faciHotelId);" &
                                 "SELECT IDENT_CURRENT('Hotel.Facilities');"
 
             Using cnn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}

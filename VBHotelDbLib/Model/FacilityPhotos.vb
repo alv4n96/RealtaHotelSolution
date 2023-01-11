@@ -3,7 +3,7 @@
         Private _faphoId As Integer
         Private _faphoThumbnailFilename As String
         Private _faphoPhotoFilename As String
-        Private _faphoPrimary As Byte
+        Private _faphoPrimary As Boolean
         Private _faphoUrl As String
         Private _faphoModifiedDate As DateTime
         Private _faphoFaciId As Integer
@@ -11,7 +11,7 @@
         Public Sub New()
         End Sub
 
-        Public Sub New(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Byte, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer)
+        Public Sub New(faphoId As Integer, faphoThumbnailFilename As String, faphoPhotoFilename As String, faphoPrimary As Boolean, faphoUrl As String, faphoModifiedDate As Date, faphoFaciId As Integer)
             Me.FaphoId = faphoId
             Me.FaphoThumbnailFilename = faphoThumbnailFilename
             Me.FaphoPhotoFilename = faphoPhotoFilename
@@ -48,11 +48,11 @@
             End Set
         End Property
 
-        Public Property FaphoPrimary As Byte
+        Public Property FaphoPrimary As Boolean
             Get
                 Return _faphoPrimary
             End Get
-            Set(value As Byte)
+            Set(value As Boolean)
                 _faphoPrimary = value
             End Set
         End Property
@@ -86,7 +86,7 @@
 
         Public Overrides Function ToString() As String
             Return $"
-Photo ID    : {FaphoId} | Facility ID : {FaphoFaciId} | Primary : {FaphoPrimary}
+Photo ID    : {FaphoId} | Facility ID : {FaphoFaciId} | {If(FaphoPrimary, "Primary", "Not Primary")}
 Thumbnail   : {FaphoThumbnailFilename}
 Filename    : {FaphoPhotoFilename}
 URL         : {FaphoUrl}
