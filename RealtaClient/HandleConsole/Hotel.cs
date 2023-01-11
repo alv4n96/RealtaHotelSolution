@@ -15,9 +15,9 @@ namespace HotelConsole.HandleConsole
 
             //GetAllDataHotel(_conn);
             //CreateHotel(_conn);
-            GetDataHotelById(_conn, 11);
+            //GetDataHotelById(_conn, 11);
             //UpdateHotel(_conn);
-            DeleteHotel(_conn, 11);
+            //DeleteHotel(_conn, 11);
             //UpdateHotelBySP(_conn);
             //RunAsync(_conn);
         }

@@ -1,4 +1,5 @@
 ﻿Imports VBHotelDbLib.Context
+Imports VBHotelDbLib.Model
 Imports VBHotelDbLib.Repository
 
 Namespace Base
@@ -10,6 +11,7 @@ Namespace Base
         Private _hotelRepository As IHotelRepository
         Private _hotelReviewsRepository As IHotelReviewsRepository
         Private _facilitiesRepository As IFacilitiesRepository
+        Private _facilityPhotos As IFacilityPhotosRepository
 
         Public Sub New(repositoryContext As IRepositoryContext)
             _repositoryContext = repositoryContext
@@ -42,6 +44,15 @@ Namespace Base
                     _facilitiesRepository = New FacilitiesRepository(_repositoryContext)
                 End If
                 Return _facilitiesRepository
+            End Get
+        End Property
+
+        Public ReadOnly Property FacilityPhotos As IFacilityPhotosRepository Implements IRepositoryManager.FacilityPhotos
+            Get
+                If _facilityPhotos Is Nothing Then
+                    _facilityPhotos = New FacilityPhotosRepository(_repositoryContext)
+                End If
+                Return _facilityPhotos
             End Get
         End Property
     End Class
