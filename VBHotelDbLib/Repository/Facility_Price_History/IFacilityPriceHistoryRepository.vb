@@ -8,5 +8,7 @@ Namespace Repository
 
         Function FindFaphByIdFaciId(ByVal id As Integer) As List(Of FacilityPriceHistory)
 
+        Function FindAllFaphReviewsAsync() As Task(Of List(Of FacilityPriceHistory))
+
     End Interface
 End Namespace

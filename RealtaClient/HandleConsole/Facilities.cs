@@ -12,37 +12,33 @@ namespace HotelConsole.HandleConsole
     {
         public static void Run(IHotelDbLib config)
         {
+            Facilities res = new Facilities();
 
-            //GetAllDataFaci(config);
-            //GetDataFaciById(config, 27);
-            //CreateFaci(config);
-            //UpdateFaci(config);
-            //UpdateFaciBySP(config);
-            //DeleteFaci(config, 28);
-            //RunAsync(config);
+            res.GetAllDataFaci(config);
+            res.GetDataFaciById(config, 27);
+            res.CreateFaci(config);
+            res.UpdateFaci(config);
+            res.UpdateFaciBySP(config);
+            res.DeleteFaci(config, 28);
+
+            Task s = res.GetDataFaciAsync(config);
+            Thread.Sleep(25);
         }
 
-        private static async Task RunAsync(IHotelDbLib _conn)
-        {
-            Facilities s = new Facilities();
-            s.GetDataFaciAsync(_conn);
-            Thread.Sleep(50);
-        }
-
-        private static void GetAllDataFaci(IHotelDbLib config)
+        private void GetAllDataFaci(IHotelDbLib config)
         {
             var getAllDataFaci = config.RepositoryManager.Facilities.FindAllFacilities();
             foreach (var x in getAllDataFaci) Console.WriteLine(x);
         }
 
-        private static void GetDataFaciById(IHotelDbLib config, int id)
+        private void GetDataFaciById(IHotelDbLib config, int id)
         {
             var facilitiesById = config.RepositoryManager.Facilities.FindFacilitiesById(id);
             Console.WriteLine($"RESULT : " +
                               $"{facilitiesById}");
         }
 
-        private static void CreateFaci(IHotelDbLib config)
+        private void CreateFaci(IHotelDbLib config)
         {
             var newFacilities = config.RepositoryManager.Facilities.CreateFacilities(new VBHotelDbLib.Model.Facilities
             {
@@ -66,7 +62,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine($"New Hotel Review Created : {newFacilities}");
         }
 
-        private static void UpdateFaci(IHotelDbLib config)
+        private void UpdateFaci(IHotelDbLib config)
         {
             //Data Update!
             var id = 27;
@@ -91,7 +87,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(facilitiesResult);
         }
 
-        private static void UpdateFaciBySP(IHotelDbLib config)
+        private void UpdateFaciBySP(IHotelDbLib config)
         {
             //Data Update!
             var id = 27;
@@ -116,7 +112,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(facilitiesResult);
         }
 
-        private static void DeleteFaci(IHotelDbLib config, int id)
+        private void DeleteFaci(IHotelDbLib config, int id)
         {
             var rowDelete = config.RepositoryManager.Facilities.DeleteFacilities(id);
             Console.WriteLine($"Delete Facilities Reviews row : {rowDelete}" +

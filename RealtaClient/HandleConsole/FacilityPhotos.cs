@@ -11,37 +11,33 @@ namespace HotelConsole.HandleConsole
     {
         public static void Run(IHotelDbLib config)
         {
+            FacilityPhotos res = new FacilityPhotos();
+            //res.GetAllDataFaPho(config);
+            //res.GetDataFaPhoById(config, 4);
+            //res.CreateFaPho(config);
+            //res.UpdateFaPho(config);
+            //res.UpdateFaPhoBySP(config);
+            //res.DeleteFaPho(config, 4);
 
-            //GetAllDataFaPho(config);
-            //GetDataFaPhoById(config, 4);
-            //CreateFaPho(config);
-            //UpdateFaPho(config);
-            //UpdateFaPhoBySP(config);
-            //DeleteFaPho(config, 4);
-            RunAsync(config);
-        }
-
-        private static async Task RunAsync(IHotelDbLib _conn)
-        {
-            FacilityPhotos s = new FacilityPhotos();
-            s.GetDataFaPhoAsync(_conn);
+            Task s = res.GetDataFaPhoAsync(config);
             Thread.Sleep(25);
         }
 
-        private static void GetAllDataFaPho(IHotelDbLib config)
+
+        private void GetAllDataFaPho(IHotelDbLib config)
         {
             var getDataFaPhoReviews = config.RepositoryManager.FacilityPhotos.FindAllFacilityPhotos();
             foreach (var item in getDataFaPhoReviews) Console.WriteLine(item);
         }
 
-        private static void GetDataFaPhoById(IHotelDbLib config, int id)
+        private void GetDataFaPhoById(IHotelDbLib config, int id)
         {
             var hoReById = config.RepositoryManager.FacilityPhotos.FindFacilityPhotosById(id);
             Console.WriteLine($"RESULT : " +
                               $"{hoReById}");
         }
 
-        private static void CreateFaPho(IHotelDbLib config)
+        private void CreateFaPho(IHotelDbLib config)
         {
             var newFaPho = config.RepositoryManager.FacilityPhotos.CreateFacilityPhotos(new VBHotelDbLib.Model.FacilityPhotos
             {
@@ -56,14 +52,14 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine($"New Hotel Review Created : {newFaPho}");
         }
         
-        private static void UpdateFaPho(IHotelDbLib config)
+        private void UpdateFaPho(IHotelDbLib config)
         {
             var updateFacilityPhotos = config.RepositoryManager.FacilityPhotos.UpdateFacilityPhotosById(4, null, "Test-Update2.png", false, "https://github.com/testajasih", new DateTime(2023, 1, 11, 16, 39, 29),3);
             var facilityPhotoUpdateResult = config.RepositoryManager.FacilityPhotos.FindFacilityPhotosById(4);
             Console.WriteLine(facilityPhotoUpdateResult);
         }
         
-        private static void UpdateFaPhoBySP(IHotelDbLib config)
+        private void UpdateFaPhoBySP(IHotelDbLib config)
         {
             //Call UpdateFaciltyPhotos with SQL - STORE PROCEDURE
             var updateFacilityPhotos = config.RepositoryManager.FacilityPhotos.UpdateFacilityPhotosById(4, null, "Test-Update.png", false, "https://github.com/testajasih", new DateTime(2023, 1, 11, 16, 39, 29),3);
@@ -72,7 +68,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(facilityPhotoBySpupdateResult);
         }
 
-        private static void DeleteFaPho(IHotelDbLib config, int id)
+        private void DeleteFaPho(IHotelDbLib config, int id)
         {
             var rowDelete = config.RepositoryManager.FacilityPhotos.DeleteFacilityPhotos(id);
             Console.WriteLine($"Delete Hotel Reviews row : {rowDelete}");

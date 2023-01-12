@@ -12,37 +12,33 @@ namespace HotelConsole.HandleConsole
     {
         public static void Run(IHotelDbLib _conn)
         {
+            Hotel res = new Hotel();
+            res.GetAllDataHotel(_conn);
+            res.CreateHotel(_conn);
+            res.GetDataHotelById(_conn, 11);
+            res.UpdateHotel(_conn);
+            res.DeleteHotel(_conn, 11);
+            res.UpdateHotelBySP(_conn);
 
-            //GetAllDataHotel(_conn);
-            //CreateHotel(_conn);
-            //GetDataHotelById(_conn, 11);
-            //UpdateHotel(_conn);
-            //DeleteHotel(_conn, 11);
-            //UpdateHotelBySP(_conn);
-            //RunAsync(_conn);
-        }
-
-        private static async Task RunAsync(IHotelDbLib _conn)
-        {
-            Hotel s = new Hotel();
-            s.GetDataHotelAsync(_conn);
+            Task s = res.GetDataHotelAsync(_conn);
             Thread.Sleep(25);
         }
 
-        private static void GetAllDataHotel(IHotelDbLib config)
+
+        private void GetAllDataHotel(IHotelDbLib config)
         {
             var listHotel = config.RepositoryManager.Hotel.FindAllHotel();
             listHotel.ForEach(item => { Console.WriteLine(item); });
         }
 
-        private static void GetDataHotelById(IHotelDbLib config, int id)
+        private void GetDataHotelById(IHotelDbLib config, int id)
         {
             var hotelById = config.RepositoryManager.Hotel.FindHotelById(id);
             Console.WriteLine($"Data Found : {hotelById}");
 
         }
 
-        private static void CreateHotel(IHotelDbLib config)
+        private void CreateHotel(IHotelDbLib config)
         {
             var newHotel = config.RepositoryManager.Hotel.CreateHotel(new VBHotelDbLib.Model.Hotel
             {
@@ -57,21 +53,21 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine($"New Hotel : {newHotel}");
         }
 
-        private static void UpdateHotel(IHotelDbLib config)
+        private void UpdateHotel(IHotelDbLib config)
         {
             var updateHotel = config.RepositoryManager.Hotel.UpdateHotelById(24, "Hotel Limboto 22", "Hotel Good",4, "+62 823 4545 2222",DateTime.Now, 3);
             var hotelUpdateResult = config.RepositoryManager.Hotel.FindHotelById(24);
             Console.WriteLine(hotelUpdateResult);
         }
 
-        private static void DeleteHotel(IHotelDbLib config, int id)
+        private void DeleteHotel(IHotelDbLib config, int id)
         {
             var rowDelete = config.RepositoryManager.Hotel.DeleteHotel(id);
             Console.WriteLine($"Delete Hotel row : {rowDelete}");
             GetDataHotelById(config, id);
         }
 
-        private static void UpdateHotelBySP(IHotelDbLib config)
+        private void UpdateHotelBySP(IHotelDbLib config)
         {
             //Call UpdateHotel with SQL - STORE PROCEDURE
             var updateHotel = config.RepositoryManager.Hotel.UpdateHotelById(25, "Hotel Limboto 22", "Hotel Cihuy Bos", 4, "+62 823 4545 2222", DateTime.Now, 3);

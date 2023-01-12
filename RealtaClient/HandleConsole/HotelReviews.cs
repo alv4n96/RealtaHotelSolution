@@ -11,38 +11,34 @@ namespace HotelConsole.HandleConsole
     {
         public static void Run(IHotelDbLib config)
         {
+            HotelReviews res = new HotelReviews();
 
-            //GetAllDataHoRe(config);
-            //GetDataHoReById(config, 5);
-            //CreateHoRe(config);
-            //UpdateHoRe(config);
-            //UpdateHoReBySP(config);
-            //DeleteHoRe(config, 5);
-            //GetDataHoReById(config, 6);
-            //RunAsync(config);
+            //res.GetAllDataHoRe(config);
+            //res.GetDataHoReById(config, 5);
+            //res.CreateHoRe(config);
+            //res.UpdateHoRe(config);
+            //res.UpdateHoReBySP(config);
+            //res.DeleteHoRe(config, 5);
+            //res.GetDataHoReById(config, 6);
+            //Task s = res.GetDataHoReAsync(config);
+            //Thread.Sleep(25);
         }
 
-        private static async Task RunAsync(IHotelDbLib _conn)
-        {
-            HotelReviews s = new HotelReviews();
-            s.GetDataHoReAsync(_conn);
-            Thread.Sleep(25);
-        }
 
-        private static void GetAllDataHoRe(IHotelDbLib config)
+        private void GetAllDataHoRe(IHotelDbLib config)
         {
             var getDataHoreReviews = config.RepositoryManager.HotelReviews.FindAllHotelReviews();
             foreach (var item in getDataHoreReviews) Console.WriteLine(item);
         }
 
-        private static void GetDataHoReById(IHotelDbLib config, int id)
+        private void GetDataHoReById(IHotelDbLib config, int id)
         {
             var hoReById = config.RepositoryManager.HotelReviews.FindHotelReviewsById(id);
             Console.WriteLine($"RESULT : " +
                               $"{hoReById}");
         }
 
-        private static void CreateHoRe(IHotelDbLib config)
+        private void CreateHoRe(IHotelDbLib config)
         {
             var newHotelReview = config.RepositoryManager.HotelReviews.CreateHotelReviews(new VBHotelDbLib.Model.HotelReviews
             {
@@ -56,7 +52,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine($"New Hotel Review Created : {newHotelReview}");
         }
         
-        private static void UpdateHoRe(IHotelDbLib config)
+        private void UpdateHoRe(IHotelDbLib config)
         {
             DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);
             var updateHotelReview = config.RepositoryManager.HotelReviews.UpdateHotelReviewsById(6, "Limboto 20 Updated!", 4, 1, 2, dateUpdate);
@@ -64,7 +60,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(hotelReviewUpdateResult);
         }
         
-        private static void UpdateHoReBySP(IHotelDbLib config)
+        private void UpdateHoReBySP(IHotelDbLib config)
         {
             DateTime dateUpdate = new DateTime(2023, 1, 10, 6, 51, 39);
             //Call UpdateHotelReviews with SQL - STORE PROCEDURE
@@ -73,7 +69,7 @@ namespace HotelConsole.HandleConsole
             Console.WriteLine(hotelReviewUpdateSpResult);
         }
 
-        private static void DeleteHoRe(IHotelDbLib config, int id)
+        private void DeleteHoRe(IHotelDbLib config, int id)
         {
             var rowDelete = config.RepositoryManager.HotelReviews.DeleteHotelReviews(id);
             Console.WriteLine($"Delete Hotel Reviews row : {rowDelete}");
