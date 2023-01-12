@@ -12,6 +12,7 @@ Namespace Base
         Private _hotelReviewsRepository As IHotelReviewsRepository
         Private _facilitiesRepository As IFacilitiesRepository
         Private _facilityPhotos As IFacilityPhotosRepository
+        Private _facilityPriceHistory As IFacilityPriceHistoryRepository
 
         Public Sub New(repositoryContext As IRepositoryContext)
             _repositoryContext = repositoryContext
@@ -53,6 +54,15 @@ Namespace Base
                     _facilityPhotos = New FacilityPhotosRepository(_repositoryContext)
                 End If
                 Return _facilityPhotos
+            End Get
+        End Property
+
+        Public ReadOnly Property FacilityPriceHistory As IFacilityPriceHistoryRepository Implements IRepositoryManager.FacilityPriceHistory
+            Get
+                If _facilityPriceHistory Is Nothing Then
+                    _facilityPriceHistory = New FacilityPriceHistoryRepository(_repositoryContext)
+                End If
+                Return _facilityPriceHistory
             End Get
         End Property
     End Class

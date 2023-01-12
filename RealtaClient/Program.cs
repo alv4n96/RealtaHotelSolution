@@ -12,6 +12,9 @@ namespace HotelConsole // Note: actual namespace depends on the project name.
         {
             IHotelDbLib config = new HotelDbLib(BuildConfig.Config().GetConnectionString("RealtaHotelDS"));
 
+            var test = config.RepositoryManager.FacilityPriceHistory.FindAllFaph();
+            test.ForEach(x => Console.WriteLine(x));
+
             /* -- Hotel -- */
             //Hotel.Run(config);
 
@@ -23,6 +26,9 @@ namespace HotelConsole // Note: actual namespace depends on the project name.
 
             /* -- Facility Photos -- */
             //FacilityPhotos.Run(config);
+
+            /* -- Facility Price History -- */
+            //FacilityPriceHistory.Run(config);
 
 
         }
