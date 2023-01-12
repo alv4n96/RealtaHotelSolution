@@ -13,15 +13,15 @@ namespace HotelConsole.HandleConsole
         public static void Run(IHotelDbLib _conn)
         {
             Hotel res = new Hotel();
-            res.GetAllDataHotel(_conn);
-            res.CreateHotel(_conn);
-            res.GetDataHotelById(_conn, 11);
-            res.UpdateHotel(_conn);
-            res.DeleteHotel(_conn, 11);
-            res.UpdateHotelBySP(_conn);
+            // res.GetAllDataHotel(_conn);
+            // res.CreateHotel(_conn);
+            // res.GetDataHotelById(_conn, 11);
+            // res.UpdateHotel(_conn);
+            // res.DeleteHotel(_conn, 11);
+            // res.UpdateHotelBySP(_conn);
 
-            Task s = res.GetDataHotelAsync(_conn);
-            Thread.Sleep(25);
+            // Task s = res.GetDataHotelAsync(_conn);
+            // Thread.Sleep(25);
         }
 
 

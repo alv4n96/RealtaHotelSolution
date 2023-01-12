@@ -14,15 +14,15 @@ namespace HotelConsole.HandleConsole
         {
             Facilities res = new Facilities();
 
-            res.GetAllDataFaci(config);
-            res.GetDataFaciById(config, 27);
-            res.CreateFaci(config);
-            res.UpdateFaci(config);
-            res.UpdateFaciBySP(config);
-            res.DeleteFaci(config, 28);
+            // res.GetAllDataFaci(config);
+            // res.GetDataFaciById(config, 27);
+            // res.CreateFaci(config);
+            // res.UpdateFaci(config);
+            // res.UpdateFaciBySP(config);
+            // res.DeleteFaci(config, 28);
 
-            Task s = res.GetDataFaciAsync(config);
-            Thread.Sleep(25);
+            // Task s = res.GetDataFaciAsync(config);
+            // Thread.Sleep(25);
         }
 
         private void GetAllDataFaci(IHotelDbLib config)

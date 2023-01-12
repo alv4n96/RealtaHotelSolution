@@ -19,8 +19,8 @@ namespace HotelConsole.HandleConsole
             //res.UpdateFaPhoBySP(config);
             //res.DeleteFaPho(config, 4);
 
-            Task s = res.GetDataFaPhoAsync(config);
-            Thread.Sleep(25);
+            // Task s = res.GetDataFaPhoAsync(config);
+            // Thread.Sleep(25);
         }
 
 
